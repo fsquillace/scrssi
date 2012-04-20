@@ -1,0 +1,47 @@
+#!/bin/bash
+
+. /etc/rc.conf
+. /etc/rc.d/functions
+
+USER='yourusername'
+SCREEN_PATH='/usr/bin/screen'
+
+PID=`pidof -o %PPID SCREEN`
+
+case "$1" in
+  start)
+    stat_busy "Starting Scrssi Service"
+    if [ $USER = 'yourusername' ]; then
+        echo "Please edit /etc/rc.d/scrssi' 'USER' before using this script."
+        stat_fail
+    else
+	LANG=$LOCALE
+        [ -z "$PID" ] && su -c "$SCREEN_PATH -d -m -c /etc/scrssirc" $USER
+        if [ $? -gt 0 ]; then
+          stat_fail
+        else
+          add_daemon dropboxd
+          stat_done
+        fi
+    fi
+    ;;
+  stop)
+    stat_busy "Stopping Scrssi Service"
+    [ ! -z "$PID" ] && su -c "$SCREEN_PATH -X -S $PID quit" $USER > /dev/null
+    if [ $? -gt 0 ]; then
+      stat_fail
+    else
+      rm_daemon scrssi
+      stat_done
+    fi
+    ;;
+  restart)
+    $0 stop
+    sleep 3
+    $0 start
+    ;;
+  *)
+    echo "usage: $0 {start|stop|restart}"
+    ;;
+esac
+exit 0
