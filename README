@@ -3,7 +3,7 @@ scrssi(1)
 
 NAME
 ----
-scrssi - Screen+irssi daemon
+scrssi - Screen+irssi daemon for Archlinux
 
 SYNOPSIS
 --------
@@ -17,33 +17,19 @@ Execute client
 
 DESCRIPTION
 -----------
-descr
+*scrssi* define a daemon for Archlinux used to activate a session of scree+irssi.
 
-INSTALLATION
-------------
-install
+TIPS & TRICKS
+-------------
+Use irssi with bitlbee to manage all your IM account directly throught a IRC gateway.
+The daemon of *scrssi* allows to activate/disable of your account.
+That's great!
 
-CONFIGURATIONS
---------------
-config
-
-CONFIG FILES
-------------
-The config files touched by *pyshell* are:
-
-* '$$~$$/.config/ranger/commands.py'
-* '$$~$$/.bashrc'
-* '$$~$$/.vimrc'
-* '$$~$$/.inputrc'
 
 FILES
 -----
-*pyshell* creates a config directory in '$$~$$/.config/pyshell' which include 
-several config files. All the temporary directories of the associated shell 
-are stored in '$$~$$/.config/pyshell/tmp'.
-
-The bookmark paths are stored into '$$~$$/.config/ranger/bookmarks'. The TODOs 
-are stored into '$$~$$/.reminders'.
+*scrssi* uses the file '/etc/scrssirc' that is a config file for screen used to activate irssi once the session 
+of *scrssi* will be activated.
 
 COPYRIGHT
 ---------
@@ -68,7 +54,7 @@ COPYRIGHT
 BUGS
 ----
 	Of course there is no bug in *pyshell*. But there may be unexpected behaviors.
-	Go to 'http://code.google.com/p/pyshell/issues/list' you can report directly
+	Go to 'https://github.com/fsquillace/scrssi/issues' you can report directly
 	this unexpected behaviors.
 
 AUTHORS
@@ -77,14 +63,5 @@ Filippo Squillace <feel.squally@gmail.com>.
 
 WWW
 ---
-'http://pyshell.googlecode.com'
-
-Last words
-----------
-[verse, Dante Alighieri, from Divine Comedy]
-____________________________________________
-Consider your origins:
-You were not born to live like brutes
-but to follow virtue and knowledge.
-____________________________________________
+'https://github.com/fsquillace/scrssi'
 
