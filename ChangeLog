@@ -1,4 +1,5 @@
-scrssi 0.1.2
+scrssi 0.1.3
+- Fixed some problems when opened more than one screen instance
 - Improved the alias scrssi to show the error of screen
 
 scrssi 0.1.1

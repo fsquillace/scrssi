@@ -5,8 +5,8 @@
 
 USER='yourusername'
 SCREEN_PATH='/usr/bin/screen'
-
-PID=`pidof -o %PPID SCREEN`
+PID_FILE=/var/run/scrssi.pid
+PID=`cat $PID_FILE 2> /dev/null`
 
 case "$1" in
   start)
@@ -16,10 +16,12 @@ case "$1" in
         stat_fail
     else
 	LANG=$LOCALE
-        [ -z "$PID" ] && su -c "$SCREEN_PATH -d -m -c /etc/scrssirc" $USER
+        [ -z "$PID" ] && su -c "$SCREEN_PATH -S scrssi -d -m -c /etc/scrssirc" $USER
         if [ $? -gt 0 ]; then
           stat_fail
         else
+          PID=`su -c "screen -list | grep scrssi | cut -f1 -d'.' | sed 's/\W//g'" $USER`
+          echo $PID > $PID_FILE
           add_daemon dropboxd
           stat_done
         fi
@@ -31,6 +33,7 @@ case "$1" in
     if [ $? -gt 0 ]; then
       stat_fail
     else
+      rm $PID_FILE
       rm_daemon scrssi
       stat_done
     fi

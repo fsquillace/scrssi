@@ -1,1 +1,1 @@
-alias scrssi="screen -raAd && clear"
+alias scrssi="screen -raAd -S scrssi && clear"
