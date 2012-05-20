@@ -31,7 +31,14 @@ case "$1" in
     stat_busy "Stopping Scrssi Service"
     [ ! -z "$PID" ] && su -c "$SCREEN_PATH -X -S $PID quit" $USER > /dev/null
     if [ $? -gt 0 ]; then
-      stat_fail
+        if [ ! -z "$PID" ];
+        then
+            rm $PID_FILE
+            rm_daemon scrssi
+            stat_done
+        else
+            stat_fail
+        fi
     else
       rm $PID_FILE
       rm_daemon scrssi

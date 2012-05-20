@@ -1,3 +1,6 @@
+scrssi 0.1.4
+- Fixed the PID File
+
 scrssi 0.1.3
 - Fixed some problems when opened more than one screen instance
 - Improved the alias scrssi to show the error of screen
